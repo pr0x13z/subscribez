@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>unlocking… 😈</title>
+  <title>verifying… 😈</title>
 
   <style>
     body {
@@ -15,7 +15,7 @@
 
     a.button {
       display: block;
-      width: 300px;
+      width: 320px;
       margin: 20px auto;
       padding: 15px;
       background: #ff0033;
@@ -31,9 +31,26 @@
       opacity: 0.6;
     }
 
+    #status {
+      font-size: 26px;
+      margin-top: 30px;
+    }
+
     #timer {
-      font-size: 28px;
-      margin: 20px 0;
+      font-size: 32px;
+      margin: 15px 0;
+    }
+
+    .dots::after {
+      content: '';
+      animation: dots 1.5s steps(3, end) infinite;
+    }
+
+    @keyframes dots {
+      0%   { content: ''; }
+      33%  { content: '.'; }
+      66%  { content: '..'; }
+      100% { content: '...'; }
     }
   </style>
 </head>
@@ -41,7 +58,7 @@
 <body>
 
   <h1>Step 1 👀</h1>
-  <p>Subscribe on YouTube</p>
+  <p>Subscribe to continue</p>
 
   <a class="button"
      href="https://www.youtube.com/@YouCantResistUs-ASMR?sub_confirmation=1"
@@ -49,7 +66,7 @@
     Subscribe 🔔
   </a>
 
-  <h1>Unlocking in…</h1>
+  <div id="status">Unlocking in</div>
   <div id="timer">30</div>
 
   <a id="continueBtn"
@@ -61,6 +78,7 @@
   <script>
     let timeLeft = 30;
     const timer = document.getElementById("timer");
+    const status = document.getElementById("status");
     const btn = document.getElementById("continueBtn");
 
     const countdown = setInterval(() => {
@@ -69,9 +87,16 @@
 
       if (timeLeft <= 0) {
         clearInterval(countdown);
-        timer.textContent = "Unlocked 😈";
-        btn.classList.remove("locked");
-        btn.textContent = "Continue 🚀";
+
+        // Fake verification phase
+        timer.style.display = "none";
+        status.innerHTML = 'Verifying subscription<span class="dots"></span>';
+
+        setTimeout(() => {
+          status.textContent = "Verified ✅";
+          btn.classList.remove("locked");
+          btn.textContent = "Continue 🚀";
+        }, 4000);
       }
     }, 1000);
   </script>

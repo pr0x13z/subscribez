@@ -1,49 +1,80 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>unlock 😈</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        padding-top: 80px;
-        background: #0f0f0f;
-        color: white;
+<head>
+  <meta charset="UTF-8">
+  <title>unlocking… 😈</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 80px;
+      background: #0f0f0f;
+      color: white;
+    }
+
+    a.button {
+      display: block;
+      width: 300px;
+      margin: 20px auto;
+      padding: 15px;
+      background: #ff0033;
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      border-radius: 10px;
+    }
+
+    a.locked {
+      background: #555;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    #timer {
+      font-size: 28px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Step 1 👀</h1>
+  <p>Subscribe on YouTube</p>
+
+  <a class="button"
+     href="https://www.youtube.com/@YouCantResistUs-ASMR?sub_confirmation=1"
+     target="_blank">
+    Subscribe 🔔
+  </a>
+
+  <h1>Unlocking in…</h1>
+  <div id="timer">30</div>
+
+  <a id="continueBtn"
+     class="button locked"
+     href="https://playernation.infotechnology.com/">
+    Locked 🔒
+  </a>
+
+  <script>
+    let timeLeft = 30;
+    const timer = document.getElementById("timer");
+    const btn = document.getElementById("continueBtn");
+
+    const countdown = setInterval(() => {
+      timeLeft--;
+      timer.textContent = timeLeft;
+
+      if (timeLeft <= 0) {
+        clearInterval(countdown);
+        timer.textContent = "Unlocked 😈";
+        btn.classList.remove("locked");
+        btn.textContent = "Continue 🚀";
       }
-      a.button {
-        display: block;
-        width: 300px;
-        margin: 20px auto;
-        padding: 15px;
-        background: #ff0033;
-        color: white;
-        text-decoration: none;
-        font-size: 20px;
-        border-radius: 10px;
-      }
-      a.done {
-        background: #00c853;
-      }
-    </style>
-  </head>
+    }, 1000);
+  </script>
 
-  <body>
-    <h1>Step 1 👀</h1>
-    <p>Subscribe to continue</p>
-
-    <a class="button" 
-       href="https://www.youtube.com/@YouCantResistUs-ASMR?sub_confirmation=1"
-       target="_blank">
-      Subscribe on YouTube 🔔
-    </a>
-
-    <h1>Step 2 😇</h1>
-    <p>After subscribing, click below</p>
-
-    <a class="button done"
-       href="https://playernation.infotechnology.com/">
-      I Subscribed — Continue 🚀
-    </a>
-  </body>
+</body>
 </html>
